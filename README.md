@@ -1,18 +1,8 @@
-## Welcome to GitHub Pages
+## Welcome to Alice's STA141B Site
 
 You can use the [editor on GitHub](https://github.com/liyanlinalice/liyanlinalice.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
- <head>
-    <meta charset="UTF-8">
-    <title>141B: Starting your data science portfolio with GitHub</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="../stylesheets/github-light.css" media="screen">
-</head>
 
 ### Markdown
 
