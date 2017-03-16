@@ -2,18 +2,31 @@
 layout: default
 ---
 
-abcdefghuiikkdskdk Text can be **bold**, _italic_, or ~~strikethrough~~.
-abcdefghuiikkdskdk Text can be **bold**, _italic_, or ~~strikethrough~~.
+# [](#header-1)About me.
 
-[Link to another page](another-page).
+<img src="ProfilePic.JPG" width="100">
+
+ I am a first year graduate student of Statistics at University of California, Davis. I also graduate from Davis in 2016 with a B.S Bachelor degree in both Applied Math and Statistics.
+
+At UC Davis, I have taken many coursework in math, statistics, economics and computer programing. These include classes such as Time Series Analysis, Mathematical Finance, and Machine Learning algorithms. My primary data analysis programing language is R. I have also had programing experience in Matlab, C, SQL, SAS, C++, and I am currently learning how to use python in data science. 
+
+On this website page, you will find some of the projects I have done in classes or outside class. This include: 
+
+*   This is an unordered list following a header.
+*   [Link to another page](another-page).
+*   [Link to assignment2 page](assignment2).
+*   This is an unordered list following a header.
+*   This is an unordered list following a header.
+
+
 
 There should be whitespace between paragraphs.
 
 There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
 
-# [](#header-1)Header 1
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+abcdefghuiikkdskdk Text can be **bold**, _italic_, or ~~strikethrough~~.
+abcdefghuiikkdskdk Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 ## [](#header-2)Header 2
 
