@@ -6,7 +6,7 @@ title: Yanlin Li
 
 # [](#header-1)About me.
 
-<img src="ProfilePic.JPG" style="float: left; padding: 2em" width="25%">
+<img src="ProfilePic.JPG" style="float: right; padding: 2em" width="30%">
 
  I am a first year graduate student of Statistics at University of California, Davis. I also graduate from Davis in 2016 with a B.S Bachelor degree in both Applied Math and Statistics.
 
