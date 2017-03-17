@@ -15,8 +15,9 @@ Below you will find some of the projects I have done in and outside of classes i
 
 *   This is an unordered list following a header.
 *   [Link to another page](another-page).
-*   [Link to assignment2 page](assignment/assignment2.html).
-*   [hahahha](historydata_regression)
+*   [Image Process](assignment/assignment2.html).
+*   [Find the week of a day for given date](historydata_regression)
+*   [Computes Day of the Week for Any Given Date](FInd_week)
 *   This is an unordered list following a header.
 *   This is an unordered list following a header.
 
