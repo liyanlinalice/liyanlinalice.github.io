@@ -1,6 +1,6 @@
 ---
 layout: project
-title: Big data extraction
+title: Image Process Using iPython
 ---
 
 ## Welcome to another page
