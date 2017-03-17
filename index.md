@@ -1,6 +1,8 @@
 ---
 layout: default
+title: Yanlin Li
 ---
+
 
 # [](#header-1)About me.
 
@@ -14,7 +16,8 @@ On this website page, you will find some of the projects I have done in classes 
 
 *   This is an unordered list following a header.
 *   [Link to another page](another-page).
-*   [Link to assignment2 page](assignment2).
+*   [Link to assignment2 page](assignment/assignment2.html).
+*   [hahahha](historydata_regression)
 *   This is an unordered list following a header.
 *   This is an unordered list following a header.
 
