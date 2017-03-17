@@ -13,11 +13,14 @@ At UC Davis, I have taken coursework in math, statistics, computer programing an
 
 Below you will find some of the projects I have done in and outside of classes in the past, as well as my current project.  
 
-*   This is an unordered list following a header.
-*   [Link to another page](another-page).
-*   [Image Process](assignment/assignment2.html).
-*   [Find the week of a day for given date](historydata_regression)
-*   [Computes Day of the Week for Any Given Date](FInd_week)
+-   This is an unordered list following a header.
+-   [Link to another page](another-page).
+-   [Image Process](assignment/assignment2.html).
+-   [Find the week of a day for given date](historydata_regression)
+-   [Computes Day of the Week for Any Given Date](FInd_week)
+-   [Recent Project](FInd_week)
+    - level 2 item
+
 *   This is an unordered list following a header.
 *   This is an unordered list following a header.
 
