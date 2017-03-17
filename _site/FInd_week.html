@@ -36,13 +36,16 @@
 
 <p>The algorithm is based on the fact that for any year, several dates always fall on the same day of the week, called the <em style="color:#F00">doomsday</em> for the year. These dates include 4/4, 6/6, 8/8, 10/10, and 12/12. For example, the doomsday for 2016 is Monday, so in 2016 the dates above all fell on Mondays. The doomsday for 2017 is Tuesday, so in 2017 the dates above will all fall on Tuesdays.</p>
 
-<p>Doomsday for the target year can be computed with the formula:
-<script type="math/tex">d = \left(y + \left\lfloor\frac{y}{4}\right\rfloor + a\right) \bmod 7</script>
-The result $d$ corresponds to a day of the week, starting with $0$ for Sunday and ending with $6$ for Saturday. $a$ is called the <em style="color:#F00">anchor day</em> for that century. It is the doomsday for the first year in a century. $y$ is the last two digits of the target year.</p>
+<p>Doomsday for the target year can be computed with the formula:</p>
 
-<p>The anchor day for a century $c$ can be computed with the formula:
-<script type="math/tex">a = \bigl( 5 (c \bmod 4) + 2 \bigr) \bmod 7</script>
-The result $a$ corresponds to a day of the week, starting with $0$ for Sunday and ending with $6$ for Saturday.</p>
+<p><img src="d.png" style="float: center; " width="35%" /></p>
+
+<p>The result <em style="color:#F00"> d </em>  corresponds to a day of the week, starting with 0 for Sunday and ending with 6 for Saturday. <em style="color:#F00"> a </em>  is called the <em style="color:#F00">anchor day</em> for that century. It is the doomsday for the first year in a century.
+ <em style="color:#F00"> y </em>  is the last two digits of the target year. The anchor day for a century <em style="color:#F00"> c </em>  can be computed with the formula:</p>
+
+<p><img src="a.png" style="float: center; " width="35%" /></p>
+
+<p>The result <em style="color:#F00"> a </em> corresponds to a day of the week, starting with 0 for Sunday and ending with 6 for Saturday.</p>
 
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">anchor</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
     <span class="s">"""function that accepts a year as input and computes the anchor day for that year's century."""</span>

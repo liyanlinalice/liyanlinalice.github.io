@@ -7,14 +7,16 @@ We will use the Doomsday Algorithm to solve this problem. The Doomsday algorithm
 The algorithm is based on the fact that for any year, several dates always fall on the same day of the week, called the <em style="color:#F00">doomsday</em> for the year. These dates include 4/4, 6/6, 8/8, 10/10, and 12/12. For example, the doomsday for 2016 is Monday, so in 2016 the dates above all fell on Mondays. The doomsday for 2017 is Tuesday, so in 2017 the dates above will all fall on Tuesdays.
 
 Doomsday for the target year can be computed with the formula:
-$$d = \left(y + \left\lfloor\frac{y}{4}\right\rfloor + a\right) \bmod 7$$
-The result $d$ corresponds to a day of the week, starting with $0$ for Sunday and ending with $6$ for Saturday. $a$ is called the <em style="color:#F00">anchor day</em> for that century. It is the doomsday for the first year in a century. $y$ is the last two digits of the target year. 
 
-The anchor day for a century $c$ can be computed with the formula:
-$$
-a = \bigl( 5 (c \bmod 4) + 2 \bigr) \bmod 7
-$$
-The result $a$ corresponds to a day of the week, starting with $0$ for Sunday and ending with $6$ for Saturday.
+<img src="d.png" style="float: center; " width="35%">
+
+The result <em style="color:#F00"> d </em>  corresponds to a day of the week, starting with 0 for Sunday and ending with 6 for Saturday. <em style="color:#F00"> a </em>  is called the <em style="color:#F00">anchor day</em> for that century. It is the doomsday for the first year in a century.
+ <em style="color:#F00"> y </em>  is the last two digits of the target year. The anchor day for a century <em style="color:#F00"> c </em>  can be computed with the formula:
+
+<img src="a.png" style="float: center; " width="35%">
+
+
+The result <em style="color:#F00"> a </em> corresponds to a day of the week, starting with 0 for Sunday and ending with 6 for Saturday.
 
 
 
