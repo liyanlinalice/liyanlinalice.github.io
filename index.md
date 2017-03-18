@@ -18,6 +18,6 @@ Below you will find some of the projects I have done in and outside of classes i
 -   [Find Most Nutritious and Economical Food](another-page).
 -   [Most Frequent Topics in Aggie News](historydata_regression)
 -   Recent Project 
-    - [Selection of Crops to Grow in San Joaquin Valley](FInd_week)
+    - [Selection of Crops to Grow in San Joaquin Valley](basicline.html)
 
 
