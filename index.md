@@ -13,11 +13,11 @@ At UC Davis, I have taken coursework in math, statistics, computer programing an
 
 Below you will find some of the projects I have done in and outside of classes in the past, as well as my current project.  
 
--   [Compute Day of the Week for Any Given Date](FInd_week)
--   [Image Process](assignment/assignment2.html).
--   [Find Most Nutritious and Economical Food](another-page).
--   [Most Frequent Topics in Aggie News](historydata_regression)
+-   [Compute Day of the Week for Any Given Date](md_Week)
+-   [Image Process](CatImage/md_cat)
+-   [Find Most Nutritious and Economical Food](md_Food)
+-   [Most Frequent Topics in Aggie News](AggieNews/AggieNews)
 -   Recent Project 
-    - [Selection of Crops to Grow in San Joaquin Valley](basicline.html)
+    - [Selection of Crops to Grow in San Joaquin Valley](https://zoeyyizhou.github.io/141BProject/)
 
 

@@ -1,0 +1,362 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title> by </title>
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <!-- <h1></h1> -->
+        <h1>Find The Most Frequent Topics in Recent Aggie News</h1>
+        <p></p>
+
+        
+
+        
+
+        
+          <ul>
+            <li><a href="">Download <strong>ZIP File</strong></a></li>
+            <li><a href="">Download <strong>TAR Ball</strong></a></li>
+            <li><a href="">View On <strong>GitHub</strong></a></li>
+          </ul>
+        
+      </header>
+      <section>
+
+      <p>In this project, we’ll scrape text from <a href="https://theaggie.org/">The California Aggie</a> and then analyze the text and figure out the hot topics in Campus New and Sport of the California Aggie.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_link_recursively</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">Total_Page</span><span class="p">,</span><span class="n">url_List</span><span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="s">"""function extracts all article links on from a given base url"""</span>
+    <span class="s">"""input: base url, total page we are getting"""</span>
+    <span class="s">"""output: url for list of artitle for given number of page"""</span>
+    <span class="k">if</span> <span class="n">url</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span><span class="o">==</span><span class="mi">4</span><span class="p">:</span>
+        <span class="n">url_end</span> <span class="o">=</span> <span class="n">url</span><span class="o">+</span><span class="s">'page/'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">Total_Page</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">requests</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">url_end</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span><span class="o">==</span><span class="mi">404</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">'Total_Page number exceeds max limits'</span>
+            
+    <span class="n">clim</span><span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span><span class="s">'html.parser'</span><span class="p">)</span>
+    <span class="n">Artical_Title</span> <span class="o">=</span> <span class="n">clim</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">'h2'</span><span class="p">,</span><span class="n">attrs</span> <span class="o">=</span><span class="p">{</span><span class="s">"class"</span> <span class="p">:</span> <span class="s">"entry-title"</span><span class="p">}</span> <span class="p">)</span>    
+    <span class="k">if</span> <span class="n">url_List</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">url_List</span> <span class="o">=</span> <span class="p">[]</span>
+      
+    <span class="n">next_page_url</span> <span class="o">=</span> <span class="n">clim</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="n">class_</span> <span class="o">=</span> <span class="s">"page-numbers"</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">next_page_url</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'href'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">Artical_Title</span><span class="p">:</span>
+         <span class="n">url_List</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'a'</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="s">'href'</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+    <span class="k">if</span> <span class="n">Total_Page</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_link_recursively</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">Total_Page</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">url_List</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c">#total  = 1 </span>
+        <span class="k">return</span> <span class="n">url_List</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dictReturn</span><span class="p">(</span><span class="n">Artical_Url</span><span class="p">):</span>
+    <span class="s">"""function extracts the title, text, and author from an Aggie article."""</span>
+    <span class="s">"""input: one url in string format"""</span> 
+    <span class="s">"""output: dictionary with key: arthur(in unicode), text(in unicode), titile(in str format), url)"""</span>
+    <span class="n">clim</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Artical_Url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">,</span><span class="s">'html.parser'</span><span class="p">)</span> 
+    <span class="n">collset_content</span> <span class="o">=</span> <span class="n">clim</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'div'</span><span class="p">,</span><span class="n">attrs</span> <span class="o">=</span><span class="p">{</span><span class="s">"itemprop"</span> <span class="p">:</span> <span class="s">"articleBody"</span><span class="p">})</span>
+
+    <span class="c">#arthur</span>
+    <span class="n">arthur</span> <span class="o">=</span> <span class="n">collset_content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'p'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">translate</span><span class="p">({</span> <span class="mh">0x2018</span><span class="p">:</span><span class="mh">0x27</span><span class="p">,</span> <span class="mh">0x2019</span><span class="p">:</span><span class="mh">0x27</span><span class="p">,</span> <span class="mh">0x201C</span><span class="p">:</span><span class="mh">0x22</span><span class="p">,</span> <span class="mh">0x201D</span><span class="p">:</span><span class="mh">0x22</span><span class="p">,</span> <span class="mh">0x2026</span><span class="p">:</span><span class="mh">0x20</span> <span class="p">})</span>
+    <span class="n">arthur</span> <span class="o">=</span> <span class="n">arthur</span><span class="p">[</span><span class="n">arthur</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'written by'</span><span class="p">):]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">arthur</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">:</span>
+        <span class="n">collset_content_arthur</span> <span class="o">=</span> <span class="n">clim</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'strong'</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">collset_content_arthur</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'written by'</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">arthur</span><span class="o">=</span><span class="n">content</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="n">content</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">'written by'</span><span class="p">):]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arthur</span> <span class="o">=</span> <span class="s">'None'</span>
+    <span class="c">#body</span>
+    <span class="n">body_content</span> <span class="o">=</span> <span class="n">collset_content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'p'</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">body_txt</span> <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">sentence</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">body_content</span><span class="p">])</span><span class="o">.</span><span class="n">translate</span><span class="p">({</span> <span class="mh">0x2018</span><span class="p">:</span><span class="mh">0x27</span><span class="p">,</span> <span class="mh">0x2019</span><span class="p">:</span><span class="mh">0x27</span><span class="p">,</span> <span class="mh">0x201C</span><span class="p">:</span><span class="mh">0x22</span><span class="p">,</span> <span class="mh">0x201D</span><span class="p">:</span><span class="mh">0x22</span><span class="p">,</span> <span class="mh">0x2026</span><span class="p">:</span><span class="mh">0x20</span> <span class="p">})</span>
+    
+    <span class="c">#title</span>
+    <span class="n">title_content</span> <span class="o">=</span> <span class="n">clim</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'h1'</span><span class="p">,</span><span class="n">attrs</span> <span class="o">=</span><span class="p">{</span><span class="s">"class"</span> <span class="p">:</span> <span class="s">"entry-title"</span><span class="p">})</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">title_content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">translate</span><span class="p">({</span> <span class="mh">0x2018</span><span class="p">:</span><span class="mh">0x27</span><span class="p">,</span> <span class="mh">0x2019</span><span class="p">:</span><span class="mh">0x27</span><span class="p">,</span> <span class="mh">0x201C</span><span class="p">:</span><span class="mh">0x22</span><span class="p">,</span> <span class="mh">0x201D</span><span class="p">:</span><span class="mh">0x22</span><span class="p">,</span> <span class="mh">0x2026</span><span class="p">:</span><span class="mh">0x20</span> <span class="p">})</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'ascii'</span><span class="p">,</span><span class="s">'ignore'</span><span class="p">)</span>
+    
+    <span class="n">adict</span> <span class="o">=</span> <span class="p">{</span><span class="s">'author'</span><span class="p">:[],</span> <span class="s">'text'</span><span class="p">:[],</span> <span class="s">'title'</span><span class="p">:[],</span> <span class="s">'url'</span><span class="p">:[]}</span>
+    <span class="n">adict</span><span class="p">[</span><span class="s">'author'</span><span class="p">]</span><span class="o">=</span><span class="n">arthur</span>
+    <span class="n">adict</span><span class="p">[</span><span class="s">'text'</span><span class="p">]</span><span class="o">=</span> <span class="n">body_txt</span>
+    <span class="n">adict</span><span class="p">[</span><span class="s">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="n">title</span>
+    <span class="n">adict</span><span class="p">[</span><span class="s">'url'</span><span class="p">]</span> <span class="o">=</span> <span class="n">Artical_Url</span>
+    <span class="k">return</span> <span class="n">adict</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">url</span><span class="o">=</span> <span class="s">'https://theaggie.org/city/'</span>
+<span class="n">result_city</span> <span class="o">=</span> <span class="n">get_link_recursively</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">Total_Page</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">url</span><span class="o">=</span> <span class="s">'https://theaggie.org/campus/'</span>
+<span class="n">result_campus</span> <span class="o">=</span> <span class="n">get_link_recursively</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">Total_Page</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="c">#city</span>
+<span class="n">result_city_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">dictReturn</span><span class="p">(</span><span class="n">result_city</span><span class="p">[</span><span class="n">i</span><span class="p">])])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result_city</span><span class="p">))])</span>
+<span class="n">result_city_df</span> <span class="o">=</span> <span class="n">result_city_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">result_city_df</span><span class="p">[</span><span class="s">'category'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'City News'</span>
+<span class="k">print</span> <span class="n">result_city_df</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="c">#campus</span>
+<span class="n">result_campus_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">dictReturn</span><span class="p">(</span><span class="n">result_campus</span><span class="p">[</span><span class="n">i</span><span class="p">])])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result_campus</span><span class="p">))])</span>
+<span class="n">result_campus_df</span> <span class="o">=</span> <span class="n">result_campus_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">result_campus_df</span><span class="p">[</span><span class="s">'category'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'Campus News'</span>
+<span class="k">print</span> <span class="n">result_campus_df</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="c">#concate</span>
+<span class="n">Campus_City_df</span> <span class="o">=</span> <span class="n">result_campus_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result_city_df</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">Campus_City_df</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">Campus_City_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>(60, 5)
+(60, 5)
+(120, 5)
+</code></pre>
+</div>
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>author</th>
+      <th>text</th>
+      <th>title</th>
+      <th>url</th>
+      <th>category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Written by: Alyssa Vandenberg  — campus@theagg...</td>
+      <td>Six senators, new executive team electedCurren...</td>
+      <td>2017 Winter Quarter election results</td>
+      <td>https://theaggie.org/2017/02/24/2017-winter-qu...</td>
+      <td>Campus News</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Written by: Aaron Liss and Raul Castellanos  —...</td>
+      <td>Wells Fargo faces fraud, predatory lending cha...</td>
+      <td>University of California, Davis City Council s...</td>
+      <td>https://theaggie.org/2017/02/23/university-of-...</td>
+      <td>Campus News</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Written by: Kimia Akbari — campus@theaggie.org</td>
+      <td>Faculty, students recount personal tales of im...</td>
+      <td>Academics unite in peaceful rally against immi...</td>
+      <td>https://theaggie.org/2017/02/23/academics-unit...</td>
+      <td>Campus News</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Written by: Kenton Goldsby — campus@theaggie.org</td>
+      <td>Opening date pushed back to May 1Students have...</td>
+      <td>Memorial Union to reopen Spring Quarter</td>
+      <td>https://theaggie.org/2017/02/23/memorial-union...</td>
+      <td>Campus News</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Written by: Ivan Valenzuela — campus@theaggie.org</td>
+      <td>Veto included revision abandoning creation of ...</td>
+      <td>ASUCD President Alex Lee vetoes amendment for ...</td>
+      <td>https://theaggie.org/2017/02/23/asucd-presiden...</td>
+      <td>Campus News</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h1 id="what-topics-does-the-aggie-cover-the-most-do-city-articles-typically-cover-different-topics-than-campus-articles">What topics does the Aggie cover the most? Do city articles typically cover different topics than campus articles?</h1>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">Df_to_FreqGrap</span><span class="p">(</span><span class="n">result_city_df</span><span class="p">,</span><span class="n">data_from</span><span class="p">):</span>
+    <span class="s">"""function that plots word frequency after filtering out stop word and conduct lemmatize"""</span>
+    <span class="s">"""input: dataframe with text in column name text, and a string specify where do data come from (i.e title for the graph)"""</span>
+    <span class="s">"""output: barplot for the top 20 frequent lemmatized words """</span>
+    <span class="n">Final_word_list</span> <span class="o">=</span><span class="p">[]</span>
+    <span class="n">asking</span><span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result_city_df</span><span class="p">[</span><span class="s">'text'</span><span class="p">])</span>
+    <span class="n">asking</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">asking</span> <span class="o">=</span> <span class="s">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">asking</span> <span class="k">if</span> <span class="n">l</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+    <span class="n">word_list</span>  <span class="o">=</span> <span class="n">asking</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">word_list</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word_list</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">Final_word_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word_list</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">filtered_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Final_word_list</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s">'english'</span><span class="p">)]</span>  
+    <span class="n">c</span><span class="o">=</span><span class="n">Counter</span><span class="p">(</span><span class="n">filtered_words</span><span class="p">)</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+    <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s">'str'</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="s">'count'</span><span class="p">})</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">factorplot</span><span class="p">(</span><span class="s">'count'</span><span class="p">,</span><span class="s">'str'</span><span class="p">,</span>  <span class="n">data</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">kind</span> <span class="o">=</span> <span class="s">"bar"</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Most Frequent Words'</span><span class="o">+</span> <span class="s">' '</span> <span class="o">+</span> <span class="n">data_from</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  
+
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">stemmer</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span>
+<span class="n">tokenize</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span>
+<span class="k">def</span> <span class="nf">stem</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span><span class="n">stemmer</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">stemmer</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">]</span> 
+<span class="k">def</span> <span class="nf">lemmatize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">stem</span><span class="p">(</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">df_wordCloud_graph</span><span class="p">(</span><span class="n">Campus_City_df</span><span class="p">,</span><span class="n">title</span><span class="p">):</span>
+    <span class="s">"""function plot word cloud after filtering out stopwords,without limmetization"""</span>  
+    <span class="s">"""input:dataframe , title on the plot"""</span>
+    <span class="s">"""output: word cloud plot """</span>
+    <span class="n">asking</span><span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Campus_City_df</span><span class="p">[</span><span class="s">'text'</span><span class="p">])</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'ascii'</span><span class="p">,</span><span class="s">'ignore'</span><span class="p">)</span>
+    <span class="n">asking</span> <span class="o">=</span> <span class="s">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">asking</span> <span class="k">if</span> <span class="n">l</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+    <span class="n">word_list</span>  <span class="o">=</span> <span class="n">asking</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">)</span>
+    <span class="n">filtered_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_list</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s">'english'</span><span class="p">)]</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">filtered_words</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filtered_words</span><span class="p">)</span>
+    <span class="n">wordcloud</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">()</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s">"off"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">Df_to_FreqGrap</span><span class="p">(</span><span class="n">result_campus_df</span><span class="p">,</span><span class="s">'From Campus'</span><span class="p">)</span>
+<span class="n">Df_to_FreqGrap</span><span class="p">(</span><span class="n">result_city_df</span><span class="p">,</span><span class="s">'From City'</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p><img src="output_8_0.png" alt="png" /></p>
+
+<p><img src="output_8_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">Df_to_FreqGrap</span><span class="p">(</span><span class="n">Campus_City_df</span><span class="p">,</span><span class="s">'From Aggie City and Aggie Campus'</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p><img src="output_9_0.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">df_wordCloud_graph</span><span class="p">(</span><span class="n">result_city_df</span><span class="p">,</span><span class="s">'city common words'</span><span class="p">)</span>
+<span class="n">df_wordCloud_graph</span><span class="p">(</span><span class="n">result_campus_df</span><span class="p">,</span><span class="s">'campus common words'</span><span class="p">)</span>
+
+</code></pre>
+</div>
+
+<p><img src="output_10_0.png" alt="png" /></p>
+
+<p><img src="output_10_1.png" alt="png" /></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">df_wordCloud_graph</span><span class="p">(</span><span class="n">Campus_City_df</span><span class="p">,</span><span class="s">'Aggie campus and city common words'</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p><img src="output_11_0.png" alt="png" /></p>
+
+<h1 id="comment">Comment</h1>
+<p>Based on Aggie City and Aggie Campus, the Californa Aggies covers mostly life about events  Davis, students and community. The most frequent words for campus news is about apparently about studnets and campus, the univeristy appears also frequently. Since asucd senate election happened recently, which in the time period in which our news are from, so senate and asucd are frequent words in our campus artile,but not in city. The ,ost frequent words for aggie city news is davis,city, and community. In aggie city new, some words like, state, yolo, and sacromenta are not common in aggie campus</p>
+
+<p>Moreover, based on similarity matrix, I won’t say there is a big difference in aggie city and aggie campus. I calculate the average article similartiy for articles from aggie campus only, from aggie city only, from article vs city only. The similarity index between articles within city article is even smaller than similarity index between article across city article and campus article. But similarity index is higher in aggie campus than comparison across type.</p>
+
+<p>Therefor I conclude, there different topics in campus article, but the difference is not huge</p>
+
+<h1 id="titles-of-the-top-3-pairs-of-most-similar-articles-what-words-do-they-have-in-common">Titles of the top 3 pairs of most similar articles. What words do they have in common?</h1>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">pos_List</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">sim_copy</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">120</span><span class="p">):</span>
+    <span class="n">sim_copy</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">k</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">sim_copy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(),</span> <span class="n">sim_copy</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s">'value'</span><span class="p">,</span><span class="n">sim_copy</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">],</span><span class="s">'position is:'</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">j</span>
+    <span class="n">sim_copy</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">sim_copy</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">pos_List</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">pos_List</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">Campus_City_df</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">pos_List</span><span class="p">,:][</span><span class="s">'title'</span><span class="p">]</span>   
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>value 0.709003734481 position is: 14 35
+value 0.637798589665 position is: 51 58
+value 0.622394799546 position is: 24 38
+14        UC Davis holds first mental health conference
+35    UC Davis to host first ever mental health conf...
+51            Protests erupt at Milo Yiannopoulos event
+58    Davis College Republicans club leads protest a...
+24    University of California Regents meet, approve...
+38     UC Regents vote to raise tuition for UC campuses
+Name: title, dtype: object
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">filterWords</span><span class="p">(</span><span class="n">txt</span><span class="p">):</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="s">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">txt</span> <span class="k">if</span> <span class="n">l</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+    <span class="n">word_list</span>  <span class="o">=</span> <span class="n">txt</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">)</span>
+    <span class="n">Final_word_list</span> <span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">word_list</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word_list</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">Final_word_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word_list</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">filtered_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">Final_word_list</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s">'english'</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">filtered_words</span>
+
+<span class="k">def</span> <span class="nf">common_word</span><span class="p">(</span><span class="n">file_num_1</span><span class="p">,</span><span class="n">file_num_2</span><span class="p">,</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">txt1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">filterWords</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'text'</span><span class="p">][</span><span class="n">file_num_1</span><span class="p">]))</span>
+    <span class="n">txt2</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">filterWords</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">'text'</span><span class="p">][</span><span class="n">file_num_2</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">txt1</span> <span class="o">&amp;</span> <span class="n">txt2</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">print</span> <span class="s">'There are'</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">common_word</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="n">Campus_City_df</span><span class="p">)),</span><span class="s">'of words(besides stopwords) in common for file 14 and 35, these are :'</span>
+<span class="k">print</span> <span class="n">common_word</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="n">Campus_City_df</span><span class="p">),</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span>
+
+<span class="k">print</span> <span class="s">'There are'</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">common_word</span><span class="p">(</span><span class="mi">51</span><span class="p">,</span><span class="mi">58</span><span class="p">,</span><span class="n">Campus_City_df</span><span class="p">)),</span><span class="s">'of words(besides stopwords) in common for file 51 and 58, these are :'</span>
+<span class="k">print</span> <span class="n">common_word</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="n">Campus_City_df</span><span class="p">),</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span>
+
+<span class="k">print</span> <span class="s">'There are'</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">common_word</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="n">Campus_City_df</span><span class="p">)),</span><span class="s">'of words(besides stopwords) in common for file 24 and 38, these are :'</span>
+<span class="k">print</span> <span class="n">common_word</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="n">Campus_City_df</span><span class="p">)</span> <span class="p">,</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span>
+
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>There are 99 of words(besides stopwords) in common for file 14 and 35, these are :
+[u'help', u'founder', u'text', u'month', u'involv', u'group', u'lgbtqia', u'monica', u'break', u'psychologist', u'tri', u'administr', u'organ', u'gender', u'panelist', u'crisi', u'two', u'prevent', u'set', u'mental', u'realli', u'close', u'beyond', u'juliet', u'spiritu', u'abl', u'health', u'approach', u'porter', u'full', u'wa', u'confer', u'destigmat', u'bodi', u'host', u'base', u'come', u'panel', u'thirdyear', u'remark', u'attende', u'place', u'advocaci', u'studi', u'disabl', u'first', u'major', u'three', u'right', u'opportun', u'open', u'select', u'use', u'feb', u'spoke', u'commun', u'suicid', u'workshop', u'advoc', u'includ', u'pm', u'offer', u'forb', u'heal', u'took', u'fund', u'line', u'davi', u'counsel', u'work', u'aim', u'nine', u'psycholog', u'uc', u'150', u'engag', u'applic', u'process', u'want', u'onlin', u'secur', u'perform', u'speaker', u'peopl', u'9', u'attend', u'samantha', u'english', u'director', u'said', u'plan', u'student', u'center', u'well', u'person', u'thi', u'choos', u'chiang', u'academ'] 
+
+There are 75 of words(besides stopwords) in common for file 51 and 58, these are :
+[u'help', u'founder', u'text', u'month', u'involv', u'group', u'lgbtqia', u'monica', u'break', u'psychologist', u'tri', u'administr', u'organ', u'gender', u'panelist', u'crisi', u'two', u'prevent', u'set', u'mental', u'realli', u'close', u'beyond', u'juliet', u'spiritu', u'abl', u'health', u'approach', u'porter', u'full', u'wa', u'confer', u'destigmat', u'bodi', u'host', u'base', u'come', u'panel', u'thirdyear', u'remark', u'attende', u'place', u'advocaci', u'studi', u'disabl', u'first', u'major', u'three', u'right', u'opportun', u'open', u'select', u'use', u'feb', u'spoke', u'commun', u'suicid', u'workshop', u'advoc', u'includ', u'pm', u'offer', u'forb', u'heal', u'took', u'fund', u'line', u'davi', u'counsel', u'work', u'aim', u'nine', u'psycholog', u'uc', u'150', u'engag', u'applic', u'process', u'want', u'onlin', u'secur', u'perform', u'speaker', u'peopl', u'9', u'attend', u'samantha', u'english', u'director', u'said', u'plan', u'student', u'center', u'well', u'person', u'thi', u'choos', u'chiang', u'academ'] 
+
+There are 39 of words(besides stopwords) in common for file 24 and 38, these are :
+[u'help', u'founder', u'text', u'month', u'involv', u'group', u'lgbtqia', u'monica', u'break', u'psychologist', u'tri', u'administr', u'organ', u'gender', u'panelist', u'crisi', u'two', u'prevent', u'set', u'mental', u'realli', u'close', u'beyond', u'juliet', u'spiritu', u'abl', u'health', u'approach', u'porter', u'full', u'wa', u'confer', u'destigmat', u'bodi', u'host', u'base', u'come', u'panel', u'thirdyear', u'remark', u'attende', u'place', u'advocaci', u'studi', u'disabl', u'first', u'major', u'three', u'right', u'opportun', u'open', u'select', u'use', u'feb', u'spoke', u'commun', u'suicid', u'workshop', u'advoc', u'includ', u'pm', u'offer', u'forb', u'heal', u'took', u'fund', u'line', u'davi', u'counsel', u'work', u'aim', u'nine', u'psycholog', u'uc', u'150', u'engag', u'applic', u'process', u'want', u'onlin', u'secur', u'perform', u'speaker', u'peopl', u'9', u'attend', u'samantha', u'english', u'director', u'said', u'plan', u'student', u'center', u'well', u'person', u'thi', u'choos', u'chiang', u'academ'] 
+</code></pre>
+</div>
+
+<h1 id="comment-1">Comment</h1>
+
+<p>This corpus is not a representative of aggie. Aggie has more aspect that just city and campus, for example, art, sport, etc. Moreover, and I only looked at 120 articles. The link online is sort by news release time,  which means the 120 articles are the most recent 120 article aggie news released, i.e. our analysis result is based on recent events.</p>
+
+<p><a href="../">back</a></p>
+
+
+      </section>
+      <footer>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/assets/js/scale.fix.js"></script>
+
+
+  
+  </body>
+</html>

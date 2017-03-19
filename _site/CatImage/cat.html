@@ -1,7 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title> by </title>
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <!-- <h1></h1> -->
+        <h1> Data Science Portfolio</h1>
+        <p></p>
+
+        
+
+        
+
+        
+          <ul>
+            <li><a href="">Download <strong>ZIP File</strong></a></li>
+            <li><a href="">Download <strong>TAR Ball</strong></a></li>
+            <li><a href="">View On <strong>GitHub</strong></a></li>
+          </ul>
+        
+      </header>
+      <section>
+
+      <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>assignment2</title>
+<title>Yanlin(Alice)Li's assignment2</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11751,46 +11785,22 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Aice(Yanlin)-Li's--Assignment-2">Aice(Yanlin) Li's  Assignment 2<a class="anchor-link" href="#Aice(Yanlin)-Li's--Assignment-2">&#182;</a></h1><h2 id="SID-998303301">SID 998303301<a class="anchor-link" href="#SID-998303301">&#182;</a></h2><h2 id="Part-1:-Image-Processing-Basics">Part 1: Image Processing Basics<a class="anchor-link" href="#Part-1:-Image-Processing-Basics">&#182;</a></h2><p>Computers use tiny dots called <em>pixels</em> to display images. Each pixel is stored as an array of numbers that represent color intensities.</p>
-<p><strong>Example.</strong> In an 8-bit grayscale image, each pixel is a single number. The number represents light intensity ranging from black (0) to white (255).</p>
-<p><strong>Example.</strong> In a 24-bit RGB color image, each pixel is an array of 3 numbers. These numbers range from 0 to 255 and represent red, green, and blue intensity, respectively. For instance, <code>(0, 0, 255)</code> is <span style="color:#00F">bright blue</span> and <code>(255, 128, 0)</code> is <span style="color:#FF8000">orange</span>.</p>
-<p>In this assignment, you'll use Python and NumPy to manipulate 24-bit RGB color images.</p>
-<p>You can use <code>Image.open()</code> from the Python imaging library (PIL) to open an image:</p>
+<h2 id="Image-Processing-Basics">Image Processing Basics<a class="anchor-link" href="#Image-Processing-Basics">&#182;</a></h2><p>Computers use tiny dots called <em>pixels</em> to display images. Each pixel is stored as an array of numbers that represent color intensities.</p>
+<p>In an 8-bit grayscale image, each pixel is a single number. The number represents light intensity ranging from black (0) to white (255). In a 24-bit RGB color image, each pixel is an array of 3 numbers. These numbers range from 0 to 255 and represent red, green, and blue intensity, respectively. For instance, <code>(0, 0, 255)</code> is <span style="color:#00F">bright blue</span> and <code>(255, 128, 0)</code> is <span style="color:#FF8000">orange</span>.</p>
+<p>In this project, I'll use Python and NumPy to manipulate 24-bit RGB color images.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[228]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="c1"># Cat image from https://unsplash.com/photos/FqkBXo2Nkq0</span>
 <span class="n">cat_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;cat.png&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Images display inline in Jupyter notebooks:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[229]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cat_img</span>
+<span class="n">cat_img</span>
 </pre></div>
 
 </div>
@@ -11801,7 +11811,7 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[229]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
 
 
 <div class="output_png output_subarea output_execute_result">
@@ -15491,7 +15501,6 @@ LnbFrz/7pW9PpNTrNNs1xf8Pc5FuA3ELvccAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In a Python terminal, you can display the image in a new window with <code>.show()</code> instead.</p>
 <p>NumPy can convert images to arrays:</p>
 
 </div>
@@ -15499,7 +15508,7 @@ LnbFrz/7pW9PpNTrNNs1xf8Pc5FuA3ELvccAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[231]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -15523,15 +15532,13 @@ LnbFrz/7pW9PpNTrNNs1xf8Pc5FuA3ELvccAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[232]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">as_image</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert an ndarray to an Image.</span>
-<span class="sd">    </span>
 <span class="sd">    Args:</span>
 <span class="sd">        x (ndarray): The array of pixels.</span>
-<span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">        Image: The Image object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -15543,23 +15550,12 @@ LnbFrz/7pW9PpNTrNNs1xf8Pc5FuA3ELvccAAAAASUVORK5CYII=
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Exercise 1.1.</strong> How many dimensions does the <code>cat</code> array have? What does each dimension represent?</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[233]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#print cat</span>
-<span class="n">cat</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">cat</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
 </div>
@@ -15570,7 +15566,7 @@ LnbFrz/7pW9PpNTrNNs1xf8Pc5FuA3ELvccAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[233]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -15588,7 +15584,7 @@ LnbFrz/7pW9PpNTrNNs1xf8Pc5FuA3ELvccAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Comment</strong> : 3 dimension. Each dimension represent a color channel . Picture consist of 267*400 pixels points, each pixel has 3 numbers representing the intensity of red(x-axis), green(y-axis) and blue(z-axis).</p>
+<p>In this 'cat' array, we have 3 dimension. Each dimension represent a color channel . Picture consist of 267*400 pixels points, each pixel has 3 numbers representing the intensity of red(x-axis), green(y-axis) and blue(z-axis).</p>
 
 </div>
 </div>
@@ -15598,14 +15594,14 @@ LnbFrz/7pW9PpNTrNNs1xf8Pc5FuA3ELvccAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Exercise 1.2.</strong> Use <code>.copy()</code> to copy the cat array to a new variable. Swap the green(1) and blue(2) color channels in the copy. Display the result.</p>
+<p>If we want to swap the green(1) and blue(2) color channels in a copy.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[263]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">BigCat</span> <span class="o">=</span> <span class="n">cat</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -15624,7 +15620,7 @@ LnbFrz/7pW9PpNTrNNs1xf8Pc5FuA3ELvccAAAAASUVORK5CYII=
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[263]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
 
 
 <div class="output_png output_subarea output_execute_result">
@@ -19309,63 +19305,14 @@ eaNE24p9DQrQXcfC/fUvP/NPrNRynaW7ovn/AREPbgNOscV0AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Exercise 1.3.</strong> Why is <code>.copy()</code> necessary in exercise 1.2? What happens if you don't use <code>.copy()</code>?</p>
+<p>If we want to flip the blue(2) color channel from left to right.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[264]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">cat</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[264]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>numpy.ndarray</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Comment:</strong> .copy() means shallow copy. 'cat' is a array, which is mutable. Instead of copyng, '=' creates bindings ('deep copy') between a target and an object for mutable items, we don't want to do that, we simply wants to copy the value of cat. So .()copy is needed so one can change one copy without changing the other.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Exercise 1.4.</strong> Flip the blue(2) color channel from left to right. Display the resulting image. <em>Hint: see the NumPy documentation on array manipulation routines.</em></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[265]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">Cat14</span> <span class="o">=</span> <span class="n">cat</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -19381,7 +19328,7 @@ eaNE24p9DQrQXcfC/fUvP/NPrNRynaW7ovn/AREPbgNOscV0AAAAAElFTkSuQmCC
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[265]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
 
 
 <div class="output_png output_subarea output_execute_result">
@@ -23102,64 +23049,13 @@ AElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Part-2:-Singular-Value-Decomposition">Part 2: Singular Value Decomposition<a class="anchor-link" href="#Part-2:-Singular-Value-Decomposition">&#182;</a></h2><p>Suppose $X$ is an $n \times p$ matrix (for instance, one color channel of the cat image). The <em>singular value decomposition</em> (SVD) factors $X$ as $X = UD V^T$, where:</p>
+<h2 id="Singular-Value-Decomposition-(compress-picture-size)">Singular Value Decomposition (compress picture size)<a class="anchor-link" href="#Singular-Value-Decomposition-(compress-picture-size)">&#182;</a></h2><p>Suppose $X$ is an $n \times p$ matrix (for instance, one color channel of the cat image). The <em>singular value decomposition</em> (SVD) factors $X$ as $X = UD V^T$, where:</p>
 <ul>
 <li>$U$ is an $n \times n$ orthogonal matrix</li>
 <li>$D$ is an $n \times p$ matrix with zeroes everywhere except the diagonal</li>
 <li>$V$ is an $p \times p$ orthogonal matrix</li>
 </ul>
 <p>Note that a matrix $A$ is <em>orthogonal</em> when $A^T A = I$ and $AA^T = I$.</p>
-<p><strong>Example.</strong> We can use NumPy to compute the SVD for a matrix:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[266]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-    <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-     <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
-<span class="p">)</span>
-<span class="n">u</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="c1"># Here d is 2x2 because NumPy only returns the diagonal of D.</span>
-<span class="k">print</span> <span class="s2">&quot;u is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">d is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">v^T is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">vt</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>u is:
-[[-0.68145174 -0.73186305]
- [-0.73186305  0.68145174]] 
-d is:
-[ 4.52966162  2.54600974] 
-v^T is:
-[[-0.48471372 -0.62402665 -0.6128975 ]
- [ 0.80296442 -0.03960025 -0.59470998]
- [ 0.34684399 -0.78039897  0.52026598]]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>If we let</p>
 <ul>
 <li>$u_i$ denote the $i$th column of $U$</li>
@@ -23176,21 +23072,24 @@ v^T is:
 <p>Why would we want to approximate a matrix $X$?</p>
 <p>In statistics, <em>principal components analysis</em> uses this approximation to reduce the dimension (number of covariates) in a  centered (mean 0) data set. The vectors $d_i u_i$ are called the <em>principal components</em> of $X$. The vectors $v_i^T$ are called the <em>basis vectors</em>. Note that both depend on $X$. The dimension is reduced by using the first $q$ principal components instead of the original $p$ covariates. In other words, the $n \times p$ data $X$ is replaced by the $n \times q$ data $UD_q = XV_q$</p>
 <p>In computing, this approximation is sometimes used to reduce the number of bits needed to store a matrix (or image). If $q$ terms are kept, then only $nq + pq$ values (for $XV_q$ and $V_q^T$) need to be stored instead of the uncompressed $np$ values.</p>
-<p><strong>Exercise 2.1.</strong> Write the functions described below.</p>
-<ul>
-<li><p>A function that takes a matrix $X$ and returns its principal component matrix $XV_q$ and basis matrix $V_q^T$. This function should also take the number of terms kept $q$ as an argument.</p>
-</li>
-<li><p>A function that takes a principal component matrix $XV_q$ and basis matrix $V_q^T$ and returns an approximation $\hat{X}$ for the original matrix.</p>
-</li>
-</ul>
-<p>As usual, make sure to document your functions. Test your function on the red color channel of the cat image. What's the smallest number of terms where the cat is still recognizable as a cat?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Application:"><strong>Application</strong>:<a class="anchor-link" href="#Application:">&#182;</a></h2><p>What's the smallest number of terms where the cat is still recognizable as a cat?
+How many bytes does the red color channel of the cat image use? How many bytes does the compressed version use when 10 terms are kept? What percentage of the original size is this?</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[267]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">q</span><span class="p">):</span>
@@ -23215,7 +23114,7 @@ v^T is:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[268]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -23232,7 +23131,7 @@ v^T is:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[268]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
 
 
 <div class="output_png output_subarea output_execute_result">
@@ -24146,62 +24045,14 @@ GqknLZWiy9Pwq9tql7O6EFxUhMMxFiDBHWqzJOu8QxWRl1eCVPf7YNBXn7rt1nlHzBvP8lKV2DSo
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Comment: </strong> I asked my roommate what can you see from the picture without giving her any information about the picture. She recognize it's a cat with a flag when I set q to be 13. So approximately 13 is the smallest number of terms where the cat is still recognizable as a cat. But different people may have slightly different imagination.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Exercise 2.2.</strong> You can check the number of bytes used by a NumPy array with the <code>.nbytes</code> attribute. How many bytes does the red color channel of the cat image use? How many bytes does the compressed version use when 10 terms are kept? What percentage of the original size is this?</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[269]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">p</span><span class="o">=</span><span class="mi">10</span>
-
-<span class="c1">#if we don&#39;t take the difference in bytes for different data type into consideration </span>
-<span class="k">print</span> <span class="s2">&quot;percentage of compressed version in the original size without taking consideration of each entry type: &quot;</span>
-<span class="k">print</span> <span class="nb">float</span><span class="p">(</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="o">+</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">Red</span><span class="o">.</span><span class="n">nbytes</span><span class="p">))</span>
-<span class="k">print</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
-
-<span class="c1">#if we take the difference in bytes for different data type into consideration </span>
-<span class="k">print</span> <span class="s1">&#39;data type in XVq: &#39;</span><span class="p">,</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
-<span class="k">print</span> <span class="s1">&#39;data type in VqT: &#39;</span><span class="p">,</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
-<span class="k">print</span> <span class="s2">&quot;data type in Red Matrix: &quot;</span><span class="p">,</span><span class="n">Red</span><span class="o">.</span><span class="n">dtype</span>
-<span class="k">print</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
-
-<span class="k">print</span> <span class="s1">&#39;size of XVq: &#39;</span><span class="p">,</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
-<span class="k">print</span> <span class="s1">&#39;size of VqT: &#39;</span><span class="p">,</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
-<span class="k">print</span> <span class="s1">&#39;size of original matrix Red: &#39;</span><span class="p">,</span><span class="n">Red</span><span class="o">.</span><span class="n">shape</span>
-<span class="k">print</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
-
-<span class="k">print</span> <span class="s1">&#39;total bytes of XVq: &#39;</span><span class="p">,(</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span>
-<span class="k">print</span> <span class="s1">&#39;total bytes of VqT: &#39;</span><span class="p">,</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span>
-<span class="k">print</span> <span class="s1">&#39;total bytes of compressed version:&#39;</span><span class="p">,(</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span>
-<span class="k">print</span> <span class="s1">&#39;total bytes of Red Matrix:&#39;</span><span class="p">,</span> <span class="n">Red</span><span class="o">.</span><span class="n">nbytes</span>
-<span class="k">print</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
-
-<span class="k">print</span> <span class="s2">&quot;byte for each entry in XVq:&quot;</span><span class="p">,(</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">267</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&quot;byte for each entry in VqT:&quot;</span><span class="p">,</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="o">/</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="mi">400</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&quot;byte for each entry in Red Matrix:&quot;</span><span class="p">,</span><span class="n">Red</span><span class="o">.</span><span class="n">nbytes</span><span class="o">/</span><span class="p">(</span><span class="mi">106800</span><span class="p">)</span>
-<span class="k">print</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
-
-<span class="k">print</span> <span class="s2">&quot;percentage of compressed version in the original size with taking consideration of each entry type&quot;</span>
-<span class="k">print</span> <span class="nb">float</span><span class="p">(</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="o">+</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">Red</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span><span class="o">*</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">print</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="o">+</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">Red</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)),</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<span class="k">print</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="o">+</span><span class="n">fun1</span><span class="p">(</span><span class="n">Red</span><span class="p">,</span><span class="n">p</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">Red</span><span class="o">.</span><span class="n">nbytes</span><span class="p">)</span><span class="o">*</span><span class="mi">8</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
 </pre></div>
 
 </div>
@@ -24214,33 +24065,8 @@ GqknLZWiy9Pwq9tql7O6EFxUhMMxFiDBHWqzJOu8QxWRl1eCVPf7YNBXn7rt1nlHzBvP8lKV2DSo
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>percentage of compressed version in the original size without taking consideration of each entry type: 
-0.499625468165
-
-
-data type in XVq:  float64
-data type in VqT:  float64
-data type in Red Matrix:  uint8
-
-
-size of XVq:  (267, 10)
-size of VqT:  (10, 400)
-size of original matrix Red:  (267, 400)
-
-
-total bytes of XVq:  21360
-total bytes of VqT:  32000
-total bytes of compressed version: 53360
-total bytes of Red Matrix: 106800
-
-
-byte for each entry in XVq: 8
-byte for each entry in VqT: 8
-byte for each entry in Red Matrix: 1
-
-
-percentage of compressed version in the original size with taking consideration of each entry type
-0.0624531835206
+<pre>50.0
+6.2
 </pre>
 </div>
 </div>
@@ -24254,10 +24080,7 @@ percentage of compressed version in the original size with taking consideration 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong> Commment</strong> : 
-Red color channel of the cat image use 106800 bytes of int8 entries.<br>
-The compressed version use when 10 terms are kept has total of 53360 bytes of float64 entries.
-If we do NOT take the entries type difference into consideration, the compression version is around 50% of the original size. If we take entries type difference into consideration, and say if we save all of the int8 entries of Red color channel as float64 entries, the compression version is around 6.24% of the Red color matrix.</p>
+<p><strong>Comment: </strong> I asked my roommate what can she sees from the picture without giving her any information about the picture. She recognized a cat with a flag when I set q to be 13. So approximately 13 is the smallest number of terms where the cat is still recognizable as a cat, but different people may have slightly different imagination. Red color channel of the cat image use 106800 bytes of int8 entries. The compressed version use when 10 terms are kept has total of 53360 bytes of float64 entries. If we do NOT take the entries type difference into consideration, the compression version is around 50% of the original size. If we take entries type difference into consideration, and say if we save all of the int8 entries of Red color channel as float64 entries, the compression version is around 6.24% of the Red color matrix.</p>
 
 </div>
 </div>
@@ -24278,4 +24101,18 @@ If we do NOT take the entries type difference into consideration, the compressio
     </div>
   </div>
 </body>
+</html>
+
+
+      </section>
+      <footer>
+        
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="/assets/js/scale.fix.js"></script>
+
+
+  
+  </body>
 </html>
