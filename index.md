@@ -11,7 +11,7 @@ title: Data Science Portfolio
 
 At UC Davis, I have taken coursework in math, statistics, computer programing and economics. These include classes such as Numerical Analysis, Time Series Analysis, Regression Analysis, Mathematical Finance, and Machine Learning algorithms. I primarily write code in R. I have also had programing experience in Matlab, C, SQL, SAS, and C++. I am currently learning how to conduct data analysis in Python. 
 
-I want to be a data analyst or data scientist after graduation. Below you will find some of the data analysis projects I have done in and outside of classes in the past, as well as my current project.  
+My goal is to become a data analyst or data scientist after graduation. Below you will find some of the data analysis projects I have done in and outside of classes in the past, as well as my current project.  
 
 -   [Compute Day of the Week for Any Given Date](md_Week)
 -   [Image Process](CatImage/md_cat)
