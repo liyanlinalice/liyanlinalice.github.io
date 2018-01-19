@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Hi, I am Alice 
+title: Alice's Data Science Portfolio
 ---
 
 ## [](#header-1)About me.
